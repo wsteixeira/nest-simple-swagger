@@ -11,7 +11,7 @@ async function bootstrap() {
   app.enableCors();
 
   const config = new DocumentBuilder()
-    .setTitle('NestJs - Simple API')
+    .setTitle('NestJS - Simple API')
     .setDescription('Example - This API is a simple users CRUD')
     .setVersion('1.0')
     .build();

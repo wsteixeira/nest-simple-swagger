@@ -27,6 +27,8 @@ export class UsersService {
     const order = Utils.getOrder(query);
     const search = Utils.getSearch(query, columns);
 
+    query = Utils.filterQuery(query, columns);
+
     const [items, total] = await this.usersRepository.findAndCount({
       where: search ? search : query,
       order: order,
@@ -64,5 +66,7 @@ export class UsersService {
     } else {
       throw new HttpException(HttpMessage.BAD_REQUEST, HttpStatus.BAD_REQUEST);
     }
+
+    await this.usersRepository.delete(ids);
   }
 }

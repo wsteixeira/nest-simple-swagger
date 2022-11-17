@@ -28,10 +28,14 @@ export class UsersController {
 
   @ApiOperation({ summary: 'Find all resources' })
   @ApiResponse({ status: 200, type: FindAllUserDto })
-  @ApiQuery({ name: 'page', required: false })
-  @ApiQuery({ name: 'pageSize', required: false })
+  @ApiQuery({ name: 'page', type: 'number', required: false })
+  @ApiQuery({ name: 'pageSize', type: 'number', required: false })
   @ApiQuery({ name: 'search', required: false })
-  @ApiQuery({ name: 'order', required: false })
+  @ApiQuery({
+    name: 'order',
+    required: false,
+    enum: ['firstName', 'lastName', 'email'],
+  })
   @Get()
   findAll(@Query() query): Promise<FindAllUserDto> {
     return this.usersService.findAll(query);

@@ -58,4 +58,13 @@ export abstract class Utils {
     }
     return {};
   }
+
+  static filterQuery(query, columns: Array<any>) {
+    Object.keys(query).forEach((key) => {
+      if (!columns.find((column) => column.propertyName === key)) {
+        delete query[key];
+      }
+    });
+    return query;
+  }
 }
